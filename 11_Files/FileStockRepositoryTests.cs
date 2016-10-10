@@ -20,17 +20,17 @@ namespace _11_Files
             Assert.AreEqual(123, hp.Id);
         }
 
-        //[TestMethod]
-        //public void FindNextId()
-        //{
-        //    IStockRepository repository = new FileStockRepository(repositoryDir);
-        //    long id1 = repository.NextId();
-        //    Assert.IsTrue(id1 != 0);
-        //    long id2 = repository.NextId();
-        //    Assert.IsTrue(id2 != 0);
-        //    Assert.IsTrue(id2 != id1);
+        [TestMethod]
+        public void FindNextId()
+        {
+            IStockRepository repository = new FileStockRepository(repositoryDir);
+            long id1 = repository.NextId();
+            Assert.IsTrue(id1 != 0);
+            long id2 = repository.NextId();
+            Assert.IsTrue(id2 != 0);
+            Assert.IsTrue(id2 != id1);
 
-        //}
+        }
 
         [TestMethod]
         public void CreateRepository()
@@ -40,14 +40,14 @@ namespace _11_Files
             Assert.IsTrue(repositoryDir.Exists);
         }
 
-        //[TestMethod]
-        //public void FindStockFileName()
-        //{
-        //    IFileRepository repository = new FileStockRepository(repositoryDir);
-        //    Assert.AreEqual("stock123.txt", repository.StockFileName(123));
-        //    hp.Id = 456;
-        //    Assert.AreEqual("stock456.txt", repository.StockFileName(hp));
-        //}
+        [TestMethod]
+        public void FindStockFileName()
+        {
+            IFileRepository repository = new FileStockRepository(repositoryDir);
+            Assert.AreEqual("stock123.txt", repository.StockFileName(123));
+            hp.Id = 456;
+            Assert.AreEqual("stock456.txt", repository.StockFileName(hp));
+        }
 
         //[TestMethod]
         //public void CanSaveStockWritesToFile()
@@ -59,31 +59,31 @@ namespace _11_Files
         //    Assert.IsTrue(fileYhoo.Exists);
         //}
 
-        //[TestMethod]
-        //public void CanSaveAndLoad()
-        //{
-        //    IStockRepository repository = new FileStockRepository(repositoryDir);
-        //    repository.SaveStock(yhoo);
-        //    long id = yhoo.Id;
+        [TestMethod]
+        public void CanSaveAndLoad()
+        {
+            IStockRepository repository = new FileStockRepository(repositoryDir);
+            repository.SaveStock(yhoo);
+            long id = yhoo.Id;
 
-        //    IStockRepository differentRepository = new FileStockRepository(repositoryDir);
-        //    Stock newYhoo = differentRepository.LoadStock(id);
+            IStockRepository differentRepository = new FileStockRepository(repositoryDir);
+            Stock newYhoo = differentRepository.LoadStock(id);
 
-        //    Assert.AreEqual(yhoo, newYhoo);
-        //}
+            Assert.AreEqual(yhoo, newYhoo);
+        }
 
-        //[TestMethod]
-        //public void CanSaveAfterChange()
-        //{
-        //    IStockRepository repository = new FileStockRepository(repositoryDir);
-        //    repository.SaveStock(yhoo);
-        //    yhoo.NumShares = 120;
-        //    repository.SaveStock(yhoo);
+        [TestMethod]
+        public void CanSaveAfterChange()
+        {
+            IStockRepository repository = new FileStockRepository(repositoryDir);
+            repository.SaveStock(yhoo);
+            yhoo.NumShares = 120;
+            repository.SaveStock(yhoo);
 
-        //    IStockRepository newRepository = new FileStockRepository(repositoryDir);
-        //    Stock loaded = newRepository.LoadStock(yhoo.Id);
-        //    Assert.AreEqual(120, loaded.NumShares);
-        //}
+            IStockRepository newRepository = new FileStockRepository(repositoryDir);
+            Stock loaded = newRepository.LoadStock(yhoo.Id);
+            Assert.AreEqual(120, loaded.NumShares);
+        }
 
         //[TestMethod]
         //public void CanClearRepository()

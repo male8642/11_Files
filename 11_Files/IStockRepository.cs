@@ -2,6 +2,8 @@
 {
     internal interface IStockRepository
     {
-        //long NextId();
+        long NextId();
+        void SaveStock(Stock yhoo);
+        Stock LoadStock(long id);
     }
 }
